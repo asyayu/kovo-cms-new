@@ -1,0 +1,134 @@
+<%- include("../partials/header")%>
+
+<div class="row">
+<h1 class="text-center">Edit KoVo entry</h1>
+<div class="col-6 offset-3">
+
+    <form action="/courses/<%= course._id %>?_method=PUT" method="POST">
+    <div class="form-group">
+    <label class="form-label" for="instructor">Instructor</label>
+    <select class="form-control" name="instructor" id="instructor">
+        <% for (let instructor of instructors.sort()) {%>
+            <option value="<%= instructor %>" <%= course.instructor === instructor ? 'selected': '' %>><%= instructor %></option>
+        <%}%>
+    </select>
+    <label class="form-label" for="courseType">Course type</label>
+    <select class="form-control" name="courseType" id="courseType">
+        <% for (let type of courseTypes) {%>
+            <option value="<%= type %>" <%= course.courseType === type ? 'selected': '' %> ><%= type %></option>
+        <%}%>
+    </select>
+    <label class="form-label" for="semester">Semester</label>
+    <select class="form-control" name="semester" id="semester">
+        <% for (let semester of semesters) {%>
+            <option value="<%= semester %>" <%= course.semester === semester ? 'selected': '' %> ><%= semester %></option>
+        <%}%>
+    </select>
+    <label class="form-label" for="module">Module</label>
+    <select class="form-control" name="module" id="module">
+        <% for (let module of modules.sort()) {%>
+            <option value="<%= module %>" <%= course.module === module ? 'selected': '' %> ><%= module %></option>
+        <%}%>
+    </select>
+        <label class="form-label" for="oldModule">oldModule</label>
+    <select class="form-control" name="oldModule" id="oldModule">
+        <% for (let oldModule of oldModules.sort()) {%>
+            <option value="<%= oldModule %>" <%= course.oldModule === oldModule ? 'selected': '' %> ><%= oldModule %></option>
+        <%}%>
+    </select>
+    <label class="form-label" for="courseTitle">Course title</label>
+    <input class="form-control" type="text" name="courseTitle" id="courseTitle" value="<%= course.courseTitle %>">
+    <label class="form-label" for="courseNumber">Course number</label>
+    <input class="form-control" type="text" name="courseNumber" id="courseNumber" value="<%= course.courseNumber %>">
+
+    <label class="form-label" for="forWhom">For programmes</label>
+    <input class="form-control" type="text" name="forWhom" id="forWhom" value="<%= course.forWhom %>">
+
+    <label class="form-label" for="weekday">Weekday</label>
+    <select class="form-control" name="weekday" id="weekday" value="<%= course.weekday %>">
+        <% for (let weekday of weekdays) {%>
+            <option value="<%= weekday %>" <%= course.weekday === weekday ? 'selected': '' %> ><%= weekday %></option>
+        <%}%>
+    </select>
+
+    <label class="form-label" for="time">Time</label>
+    <select class="form-control" name="time" id="time" value="<%= course.time %>">
+        <% for (let time of times) {%>
+            <option value="<%= time %>" <%= course.time === time ? 'selected': '' %> ><%= time %></option>
+        <%}%>
+    </select>
+
+    <label class="form-label" for="room">Room</label>
+    <input class="form-control" type="text" name="room" id="room" value="<%= course.room %>">
+
+    <label class="form-label" for="firstMeet">First meeting</label>
+    <input class="form-control" type="date" name="firstMeet" id="firstMeet" value="<%= course.firstMeet %>">
+
+    <h4 class="mt-3" mb-3>Optional: Group B</h4>
+
+    <label class="form-label" for="weekday">Weekday (Group B)</label>
+    <select class="form-control" name="weekdayB" id="weekdayB" value="<%= course.weekdayB %>">
+        <% for (let weekday of weekdays) {%>
+            <option value="<%= weekday %>" <%= course.weekdayB === weekday ? 'selected': '' %> ><%= weekday %></option>
+        <%}%>
+    </select>
+
+    <label class="form-label" for="time">Time (Group B)</label>
+    <select class="form-control" name="timeB" id="timeB" value="<%= course.timeB %>">
+        <% for (let time of times) {%>
+            <option value="<%= time %>" <%= course.timeB === time ? 'selected': '' %> ><%= time %></option>
+        <%}%>
+    </select>
+
+    <label class="form-label" for="room">Room (Group B)</label>
+    <input class="form-control" type="text" name="roomB" id="roomB" value="<%= course.roomB %>">
+
+    <label class="form-label" for="firstMeet">First meeting (Group B)</label>
+    <input class="form-control" type="date" name="firstMeetB" id="firstMeetB" value="<%= course.firstMeetB %>">
+
+
+    <label class="form-label" for="email">Contact</label>
+    <input class="form-control" type="email" name="email" id="email" value="<%= course.email %>">
+
+    <label class="form-label" for="opal">OPAL link</label>
+    <input class="form-control" type="text" name="opal" id="opal" value="<%= course.opal %>">
+
+    <label class="form-label" for="registrationInfo">Registration info</label>
+    <textarea class="form-control" name="registrationInfo" id="registrationInfo" rows="5" cols="40"><%= course.registrationInfo %></textarea>
+
+    <label class="form-label" for="description">Course description</label>
+    <textarea class="form-control" name="description" id="description" rows="5" fcols="40"><%= course.description %></textarea>
+
+    <label class="form-label" for="objectives">Course objectives</label>
+    <textarea class="form-control" name="objectives" id="objectives" rows="5" cols="40"><%= course.objectives %></textarea>
+
+    <label class="form-label" for="prerecs">Prerequisites</label>
+    <textarea class="form-control" name="prerecs" id="prerecs" rows="3" cols="40"><%= course.prerecs %></textarea>
+
+    <label class="form-label" for="requirements">Requirements for credits</label>
+    <textarea class="form-control" name="requirements" id="requirements" rows="5" cols="40"><%= course.requirements %></textarea>
+
+    <label class="form-label" for="lit">Literature/materials</label>
+    <textarea class="form-control" name="lit" id="lit" rows="5" cols="40"><%= course.lit %></textarea>
+
+
+    <div class="mb-3 mt-3">
+ <button class="btn btn-success">Update entry</button>
+    </div>
+   
+    </div>
+</form>
+
+<form action="/courses/<%= course._id %>?_method=DELETE" method="POST" id="delete-button">
+    <div class="mb-3 mt-3">
+    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete entry</button>
+    </div>
+</form>
+
+
+</div>
+</div>
+
+
+
+<%- include("../partials/footer")%>

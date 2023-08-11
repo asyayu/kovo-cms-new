@@ -1,0 +1,19 @@
+<%- include("../partials/header")%>
+
+<h1><%= course.courseTitle %> Info</h1>
+
+<p><%= course.instructor %></p>
+
+<p><%= course.description %></p>
+
+<div class="mb-3 mt-3">
+    <a href="/courses/<%= course._id %>/edit"><button class="btn btn-primary">Edit entry</button></a>
+</div>
+
+<form action="/courses/<%= course._id %>?_method=DELETE" method="POST">
+    <div class="mb-3 mt-3">
+        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete entry</button>
+    </div>
+</form>
+
+<%- include("../partials/footer")%>
