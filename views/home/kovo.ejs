@@ -18,7 +18,7 @@
             <% } %>
         <% for (let uniqueModule of uniqueModules) { %>
             <% if (uniqueModule.slice(0,3) == sem.slice(0,3)) { %>
-                <h3><u><%= uniqueModule.slice(0,3) + '-' + uniqueModule.slice(3) %></u></h3>
+                <h3><u><%= uniqueModule.slice(0,3) + ' ' + uniqueModule.slice(13) %></u></h3>
 
                 <div id="accordion-<%= uniqueModule.replace(/\s+/g, '') %>">
                 <% for (let course of courses) { %>
@@ -28,7 +28,7 @@
                                 <p><a class="collapsed" data-toggle="collapse" href="#collapse<%=course._id%>"><%= course.courseType.slice(0,1) %>: <%= course.courseTitle %> (<%= course.lastName %>)</a></p>
                             </div>
                             <div class="collapse tucbox-collapse-body" id="collapse<%=course._id%>">
-                                    <p>Old module equivalent: <%= course.oldModule %></p>
+                                    <p><strong>Old module equivalent:</strong> <%= course.oldModule.slice(7) %></p>
                                     <p><%= course.instructor %></p>
                                     <div class="row">
                                         <div class="col-sm-7"><h4><%= course.courseType.slice(0,1) %>: <%=course.courseTitle%></h4></div>
@@ -46,7 +46,12 @@
                                     <% } %>
                                     <div class="row">
                                         <div class="col-sm-7"><strong>Contact:</strong><?php   require_once('php/mail.inc'); echo prot_mailadr('<%= course.email %>', 1);?></div>
-                                        <div class="col-sm-5"><strong>Resource:</strong> <a href="<%= course.opal %>" target="_blank">OPAL</a></div>
+                                        <div class="col-sm-5">
+                                            
+                                            <% if (course.opal) { %>
+                                            <strong>Resource:</strong> <a href="<%= course.opal %>" target="_blank">OPAL</a>
+                                            <% } %>
+                                        </div>
                                     </div>
                                     <% if (course.registrationInfo) { %>
                                         <p><strong>Registration info:</strong> <%= course.registrationInfo %></p>
@@ -56,7 +61,7 @@
                                     <%= course.description %></p>
                                     <% if (course.objectives) { %>
                                         <h5>Objectives</h5>
-                                        <p>By the end of the course, students will be able to:</p>
+                                        <p>By the end of the course, students will:</p>
                                         <div>
                                             <ul>
                                                 <% for (let goal of course.objectivesList) { %>

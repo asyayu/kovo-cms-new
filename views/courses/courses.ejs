@@ -93,7 +93,10 @@
                     data-bs-parent="#<%= uniqueModule.replace(/\s+/g, '') %>"
                 >
                     <div class="accordion-body">
-                        <p>Old module equivalent: <%= course.oldModule %></p>
+                        <p>
+                            <strong>Old module equivalent:</strong> <%=
+                            course.oldModule %>
+                        </p>
                         <p><%= course.instructor %></p>
                         <div class="row">
                             <div class="col-sm-6">
@@ -162,10 +165,12 @@
                                 <strong>Contact:</strong> <%= course.email %>
                             </div>
                             <div class="col-sm-6">
+                                <% if (course.opal) { %>
                                 <strong>Resource:</strong>
                                 <a href="<%= course.opal %>" target="_blank"
                                     >OPAL</a
                                 >
+                                <% } %>
                             </div>
                         </div>
                         <% if (course.registrationInfo) { %>
@@ -181,9 +186,7 @@
                         <p><%= course.description %></p>
                         <% if (course.objectives) { %>
                         <h5>Objectives</h5>
-                        <p>
-                            By the end of the course, students will be able to:
-                        </p>
+                        <p>By the end of the course, students will:</p>
                         <div>
                             <ul>
                                 <% for (let goal of course.objectivesList) { %>
