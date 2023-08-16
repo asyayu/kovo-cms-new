@@ -101,10 +101,13 @@ module.exports = {
     editCourse: async (req, res) => {
         try {
             const { id } = req.params;
+            console.log(req.body);
             const course = await Course.findByIdAndUpdate(id, req.body, {
                 runValidators: true,
                 new: true,
             });
+            course.objectivesList = req.body.objectives.split('^');
+            await course.save();
             console.log(`COURSE UPDATED: ${course.courseTitle}`);
             req.flash(
                 'success',
