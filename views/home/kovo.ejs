@@ -3,93 +3,165 @@
     <% for (let sem of semSansSpace) { %>
     <li><a href="#<%=sem%>" data-toggle="tab"><%=sem%></a></li>
     <% } %>
-  </ul>
-  <div class="tab-content">
+</ul>
+<div class="tab-content">
     <div class="active tab-pane" id="home">
-        <h1>Kommentiertes Vorlesungsverzeichnis (KoVo) / List of Courses - Summer 2023</h1>
+        <h1>
+            Kommentiertes Vorlesungsverzeichnis (KoVo) / List of Courses -
+            Winter 2023/24
+        </h1>
         <%- include("../partials/info")%>
     </div>
     <% for (let sem of semSansSpace) { %>
     <div class="tab-pane" id="<%= sem %>">
         <% if (sem == 'Other') { %>
-            <h2>Other Courses</h2>
+        <h2>Other Courses</h2>
         <% } else { %>
-            <h2><%= sem.slice(0, 2) + ' ' + sem[2] %> Courses</h2>
-            <% } %>
-        <% for (let uniqueModule of uniqueModules) { %>
-            <% if (uniqueModule.slice(0,3) == sem.slice(0,3)) { %>
-                <h3><u><%= uniqueModule.slice(0,3) + ' ' + uniqueModule.slice(13) %></u></h3>
+        <h2><%= sem.slice(0, 2) + ' ' + sem[2] %> Courses</h2>
+        <% } %> <% for (let uniqueModule of uniqueModules) { %> <% if
+        (uniqueModule.slice(0,3) == sem.slice(0,3)) { %>
+        <h3>
+            <u><%= uniqueModule.slice(0,3) + ' ' + uniqueModule.slice(13) %></u>
+        </h3>
 
-                <div id="accordion-<%= uniqueModule.replace(/\s+/g, '') %>">
-                <% for (let course of courses) { %>
-                    <% if (uniqueModule == course.module) { %> 
-                        <div class="tucbox-collapse">
-                            <div class="tucbox-collapse-heading">
-                                <p><a class="collapsed" data-toggle="collapse" href="#collapse<%=course._id%>"><%= course.courseType.slice(0,1) %>: <%= course.courseTitle %> (<%= course.lastName %>)</a></p>
-                            </div>
-                            <div class="collapse tucbox-collapse-body" id="collapse<%=course._id%>">
-                                    <p><strong>Old module equivalent:</strong> <%= course.oldModule.slice(7) %></p>
-                                    <p><%= course.instructor %></p>
-                                    <div class="row">
-                                        <div class="col-sm-7"><h4><%= course.courseType.slice(0,1) %>: <%=course.courseTitle%></h4></div>
-                                        <div class="col-sm-5"><strong>(<%= course.courseNumber %>)</strong><br><%= course.forWhom %></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-7"><strong><%= course.weekday %>, <%= course.time %>, <%= course.room %></strong></div>
-                                        <div class="col-sm-5"><strong>First meeting: <%= `${new Intl.DateTimeFormat('en', { day: '2-digit' }).format(new Date(course.firstMeet))}.${new Intl.DateTimeFormat('en', { month: '2-digit' }).format(new Date(course.firstMeet))}.${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(new Date(course.firstMeet))}` %></strong></div>
-                                    </div>
-                                    <% if (course.weekdayB) { %>
-                                        <div class="row">
-                                            <div class="col-sm-7"><strong><%= course.weekdayB %>, <%= course.timeB %>, <%= course.roomB %></strong> (Group B)</div>
-                                            <div class="col-sm-5"><strong>First meeting: <%= `${new Intl.DateTimeFormat('en', { day: '2-digit' }).format(new Date(course.firstMeetB))}.${new Intl.DateTimeFormat('en', { month: '2-digit' }).format(new Date(course.firstMeetB))}.${new Intl.DateTimeFormat('en', { year: 'numeric' }).format(new Date(course.firstMeetB))}` %></strong> (Group B)</div>
-                                        </div>
-                                    <% } %>
-                                    <div class="row">
-                                        <div class="col-sm-7"><strong>Contact:</strong><?php   require_once('php/mail.inc'); echo prot_mailadr('<%= course.email %>', 1);?></div>
-                                        <div class="col-sm-5">
-                                            
-                                            <% if (course.opal) { %>
-                                            <strong>Resource:</strong> <a href="<%= course.opal %>" target="_blank">OPAL</a>
-                                            <% } %>
-                                        </div>
-                                    </div>
-                                    <% if (course.registrationInfo) { %>
-                                        <p><strong>Registration info:</strong> <%= course.registrationInfo %></p>
-                                    <% } %>
-                                    <% if (course.info) { %>
-                                        <div class="tucbox-tip-warning">
-                                        <p>Please note: <%= course.info =%</p>
-                                        </div>
-                                    <% } %>
-                                    <hr>
-                                    <h5>Content</h5>
-                                    <%= course.description %></p>
-                                    <% if (course.objectives) { %>
-                                        <h5>Objectives</h5>
-                                        <p>By the end of the course, students:</p>
-                                        <div>
-                                            <ul>
-                                                <% for (let goal of course.objectivesList) { %>
-                                                    <li><%= goal %></li>
-                                                <% } %>
-                                            </ul>
-                                        </div>
-                                    <% } %>
-                                    <h5>Prerequisites</h5>
-                                    <%= course.prerecs %>
-                                    <h5>Requirements</h5>
-                                    <%= course.requirements %>
-                                    <h5>Literature/materials</h5>
-                                    <% for (let text of course.litList) { %>
-                                        <p><%= text %></p>
-                                    <% } %>
-                            </div>
-                        </div>    
+        <div id="accordion-<%= uniqueModule.replace(/\s+/g, '') %>">
+            <% for (let course of courses) { %> <% if (uniqueModule ==
+            course.module) { %>
+            <div class="tucbox-collapse">
+                <div class="tucbox-collapse-heading">
+                    <p>
+                        <strong
+                            ><a
+                                class="collapsed"
+                                data-toggle="collapse"
+                                href="#collapse<%=course._id%>"
+                                ><%= course.courseType.slice(0,1) %>: <%=
+                                course.courseTitle %> (<%= course.lastName
+                                %>)</a
+                            ></strong
+                        >
+                    </p>
+                </div>
+                <div
+                    class="collapse tucbox-collapse-body"
+                    id="collapse<%=course._id%>"
+                >
+                    <% if (course.oldModule) { %>
+                    <p>
+                        <strong>Old module equivalent:</strong> <%=
+                        course.oldModule %>
+                    </p>
                     <% } %>
-                <% } %>
+                    <p><%= course.instructor %></p>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <h4>
+                                <%= course.courseType.slice(0,1) %>:
+                                <%=course.courseTitle%>
+                            </h4>
+                        </div>
+                        <div class="col-sm-5">
+                            <strong>(<%= course.courseNumber %>)</strong
+                            ><br /><%= course.forWhom %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <strong
+                                ><%= course.weekday %>, <%= course.time %>, <%=
+                                course.room %></strong
+                            >
+                        </div>
+                        <div class="col-sm-5">
+                            <% if (course.firstMeet !== null) { %>
+                            <strong
+                                >First meeting: <%= `${new
+                                Intl.DateTimeFormat('en', { day: '2-digit'
+                                }).format(new Date(course.firstMeet))}.${new
+                                Intl.DateTimeFormat('en', { month: '2-digit'
+                                }).format(new Date(course.firstMeet))}.${new
+                                Intl.DateTimeFormat('en', { year: 'numeric'
+                                }).format(new Date(course.firstMeet))}` %>
+                            </strong>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% if (course.weekdayB) { %>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <strong
+                                ><%= course.weekdayB %>, <%= course.timeB %>,
+                                <%= course.roomB %></strong
+                            >
+                            (Group B)
+                        </div>
+                        <div class="col-sm-5">
+                            <strong
+                                >First meeting: <%= `${new
+                                Intl.DateTimeFormat('en', { day: '2-digit'
+                                }).format(new Date(course.firstMeetB))}.${new
+                                Intl.DateTimeFormat('en', { month: '2-digit'
+                                }).format(new Date(course.firstMeetB))}.${new
+                                Intl.DateTimeFormat('en', { year: 'numeric'
+                                }).format(new Date(course.firstMeetB))}`
+                                %></strong
+                            >
+                            (Group B)
+                        </div>
+                    </div>
+                    <% } %>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <strong>Contact:</strong
+                            ><?php   require_once('php/mail.inc'); echo prot_mailadr('<%= course.email %>',
+                            1);?>
+                        </div>
+                        <div class="col-sm-5">
+                            <% if (course.opal) { %>
+                            <strong>Resource:</strong>
+                            <a href="<%= course.opal %>" target="_blank"
+                                >OPAL</a
+                            >
+                            <% } %>
+                        </div>
+                    </div>
+                    <% if (course.registrationInfo) { %>
+                    <p>
+                        <strong>Registration info:</strong> <%=
+                        course.registrationInfo %>
+                    </p>
+                    <% } %> <% if (course.info) { %>
+                    <div class="tucbox-tip-warning">
+                        <p><strong>Please note:</strong> <%= course.info %></p>
+                    </div>
+                    <% } %>
+                    <hr />
+                    <h5>Content</h5>
+                    <%= course.description %> <% if (course.objectives) { %>
+                    <h5>Objectives</h5>
+                    <p>By the end of the course, students:</p>
+                    <div>
+                        <ul>
+                            <% for (let goal of course.objectivesList) { %>
+                            <li><%= goal %></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <% } %> <% if (course.prerecs) { %>
+                    <h5>Prerequisites</h5>
+                    <%= course.prerecs %> <% } %> <% if (course.requirements) {
+                    %>
+                    <h5>Requirements</h5>
+                    <%= course.requirements %> <% } %> <% if (course.lit) { %>
+                    <h5>Literature/materials</h5>
+                    <% for (let text of course.litList) { %>
+                    <p><%= text %></p>
+                    <% } %> <% } %>
+                </div>
             </div>
-            <% } %>
-        <% } %>
+            <% } %> <% } %>
+        </div>
+        <% } %> <% } %>
     </div>
     <% } %>
-  </div>
+</div>

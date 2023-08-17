@@ -93,10 +93,12 @@
                     data-bs-parent="#<%= uniqueModule.replace(/\s+/g, '') %>"
                 >
                     <div class="accordion-body">
+                        <% if (course.oldModule) { %>
                         <p>
                             <strong>Old module equivalent:</strong> <%=
                             course.oldModule %>
                         </p>
+                        <% } %>
                         <p><%= course.instructor %></p>
                         <div class="row">
                             <div class="col-sm-6">
@@ -120,6 +122,8 @@
                                 >
                             </div>
                             <div class="col-sm-6">
+                                <% if (course.firstMeet !== null) { %>
+
                                 <strong
                                     >First meeting: <%= `${new
                                     Intl.DateTimeFormat('en', { day: '2-digit'
@@ -130,6 +134,7 @@
                                     }).format(new Date(course.firstMeet))}`
                                     %></strong
                                 >
+                                <% } %>
                             </div>
                         </div>
 
@@ -198,15 +203,17 @@
                                 <% } %>
                             </ul>
                         </div>
-                        <% } %>
+                        <% } %> <% if (course.prerecs) { %>
                         <h5>Prerequisites</h5>
                         <p><%= course.prerecs %></p>
+                        <% } %> <% if (course.requirements) { %>
                         <h5>Requirements</h5>
                         <p><%= course.requirements %></p>
+                        <% } %> <% if (course.lit) { %>
                         <h5>Literature/materials</h5>
                         <% for (let text of course.litList) { %>
                         <p><%= text %></p>
-                        <% } %>
+                        <% } %> <% } %>
                     </div>
                 </div>
             </div>
