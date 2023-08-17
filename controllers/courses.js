@@ -20,6 +20,7 @@ module.exports = {
             }
             let uniqueModules = [...new Set(diffModules)];
             uniqueModules.sort();
+            console.log(uniqueModules);
             res.render('courses/courses.ejs', {
                 courses,
                 semesters,

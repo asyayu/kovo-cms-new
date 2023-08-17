@@ -30,7 +30,7 @@
             <option value="<%= module %>" <%= course.module === module ? 'selected': '' %> ><%= module %></option>
         <%}%>
     </select>
-        <label class="form-label" for="oldModule">oldModule</label>
+        <label class="form-label" for="oldModule">Old module</label>
     <select class="form-control" name="oldModule" id="oldModule">
         <% for (let oldModule of oldModules.sort()) {%>
             <option value="<%= oldModule %>" <%= course.oldModule === oldModule ? 'selected': '' %> ><%= oldModule %></option>

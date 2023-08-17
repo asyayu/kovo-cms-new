@@ -19,11 +19,15 @@
         <% } else { %>
         <h2><%= sem.slice(0, 2) + ' ' + sem[2] %> Courses</h2>
         <% } %> <% for (let uniqueModule of uniqueModules) { %> <% if
-        (uniqueModule.slice(0,3) == sem.slice(0,3)) { %>
+        (uniqueModule.slice(0,3) == sem.slice(0,3)) { %> <% if
+        (uniqueModule.slice(0,5) == 'Other') { %>
+        <h3><u><%= uniqueModule %></u></h3>
+
+        <% } else { %>
         <h3>
             <u><%= uniqueModule.slice(0,3) + ' ' + uniqueModule.slice(13) %></u>
         </h3>
-
+        <% } %>
         <div id="accordion-<%= uniqueModule.replace(/\s+/g, '') %>">
             <% for (let course of courses) { %> <% if (uniqueModule ==
             course.module) { %>
