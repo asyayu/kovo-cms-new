@@ -56,6 +56,11 @@
                                     <% if (course.registrationInfo) { %>
                                         <p><strong>Registration info:</strong> <%= course.registrationInfo %></p>
                                     <% } %>
+                                    <% if (course.info) { %>
+                                        <div class="tucbox-tip-warning">
+                                        <p>Please note: <%= course.info =%</p>
+                                        </div>
+                                    <% } %>
                                     <hr>
                                     <h5>Content</h5>
                                     <%= course.description %></p>

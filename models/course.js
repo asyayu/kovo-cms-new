@@ -69,6 +69,9 @@ const courseSchema = new mongoose.Schema({
     opal: {
         type: String,
     },
+    info: {
+        type: String,
+    },
     registrationInfo: {
         type: String,
     },

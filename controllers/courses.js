@@ -107,6 +107,7 @@ module.exports = {
                 new: true,
             });
             course.objectivesList = req.body.objectives.split('^');
+            course.litList = req.body.lit.split('^');
             await course.save();
             console.log(`COURSE UPDATED: ${course.courseTitle}`);
             req.flash(

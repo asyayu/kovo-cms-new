@@ -180,6 +180,10 @@
                                 course.registrationInfo %>
                             </div>
                         </div>
+                        <% } %> <% if (course.info) { %>
+                        <div class="alert alert-warning" role="alert">
+                            Please note: <%= course.info %>
+                        </div>
                         <% } %>
                         <hr />
                         <h5>Content</h5>
