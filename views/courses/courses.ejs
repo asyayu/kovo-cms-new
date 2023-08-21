@@ -120,6 +120,7 @@
                                     ><%= course.weekday %>, <%= course.time %>,
                                     <%= course.room %></strong
                                 >
+                                <% if (course.weekdayB) { %> (Group A) <% } %>
                             </div>
                             <div class="col-sm-6">
                                 <% if (course.firstMeet !== null) { %>
@@ -134,6 +135,7 @@
                                     }).format(new Date(course.firstMeet))}`
                                     %></strong
                                 >
+                                <% if (course.weekdayB) { %> (Group A) <% } %>
                                 <% } %>
                             </div>
                         </div>
@@ -148,6 +150,7 @@
                                 (Group B)
                             </div>
                             <div class="col-sm-6">
+                                <% if (course.firstMeetB !== null) { %>
                                 <strong
                                     >First meeting: <%= `${new
                                     Intl.DateTimeFormat('en', { day: '2-digit'
@@ -160,7 +163,7 @@
                                     }).format(new Date(course.firstMeetB))}`
                                     %></strong
                                 >
-                                (Group B)
+                                (Group B) <% } %>
                             </div>
                         </div>
                         <% } %>

@@ -51,6 +51,7 @@
                     id="collapse<%=course._id%>"
                 >
                     <% if (course.oldModule) { %>
+                    <hr style="margin-top: 0; margin-bottom: 0" />
                     <p>
                         <strong>Old module equivalent:</strong> <%=
                         course.oldModule %>
@@ -75,6 +76,7 @@
                                 ><%= course.weekday %>, <%= course.time %>, <%=
                                 course.room %></strong
                             >
+                            <% if (course.weekdayB) { %> (Group A) <% } %>
                         </div>
                         <div class="col-sm-5">
                             <% if (course.firstMeet !== null) { %>
@@ -87,7 +89,8 @@
                                 Intl.DateTimeFormat('en', { year: 'numeric'
                                 }).format(new Date(course.firstMeet))}` %>
                             </strong>
-                            <% } %>
+                            <% if (course.weekdayB) { %> (Group A) <% } %> <% }
+                            %>
                         </div>
                     </div>
                     <% if (course.weekdayB) { %>
@@ -100,6 +103,7 @@
                             (Group B)
                         </div>
                         <div class="col-sm-5">
+                            <% if (course.firstMeetB !== null) { %>
                             <strong
                                 >First meeting: <%= `${new
                                 Intl.DateTimeFormat('en', { day: '2-digit'
@@ -110,7 +114,7 @@
                                 }).format(new Date(course.firstMeetB))}`
                                 %></strong
                             >
-                            (Group B)
+                            (Group B) <% } %>
                         </div>
                     </div>
                     <% } %>
