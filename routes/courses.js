@@ -4,6 +4,7 @@ const courseController = require('../controllers/courses');
 const { isLoggedIn } = require('../middleware');
 
 router.get('/', isLoggedIn, courseController.getAllCourses);
+router.get('/print', isLoggedIn, courseController.getPrintView);
 router.get('/new', isLoggedIn, courseController.getNewCoursePage);
 router.post('/', isLoggedIn, courseController.addNewCourse);
 router.get('/:id', isLoggedIn, courseController.getIndividualPage);

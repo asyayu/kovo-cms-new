@@ -32,6 +32,27 @@ module.exports = {
             res.render('error', { err, title: 'Error' });
         }
     },
+    getPrintView: async (req, res) => {
+        try {
+            const diffModules = [];
+            const courses = await Course.find({}).sort('courseNumber');
+            for (let course of courses) {
+                diffModules.push(course.module);
+            }
+            let uniqueModules = [...new Set(diffModules)];
+            uniqueModules.sort();
+            res.render('courses/print.ejs', {
+                courses,
+                semesters,
+                uniqueModules,
+                semSansSpace,
+                title: 'All Courses',
+            });
+        } catch (err) {
+            console.log(err);
+            res.render('error', { err, title: 'Error' });
+        }
+    },
     getNewCoursePage: async (req, res) => {
         try {
             res.render('courses/new.ejs', {
