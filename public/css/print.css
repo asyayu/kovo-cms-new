@@ -1,0 +1,19 @@
+body {
+    font-size: 0.78rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 5%;
+}
+
+/* h1 {
+    font-size: 0.9em;
+}
+h2 {
+    font-size: 0.9em;
+}
+h3 {
+    font-size: 0.9em;
+} */
+
+.pagebreak {
+    page-break-after: always;
+}
